@@ -3,960 +3,313 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>うちの子からのメッセージ | AIペット性格診断 | 願い灯</title>
-<meta name="description" content="AIがあなたのペットの写真を解析し、性格傾向と飼い主へのメッセージをお届けするデジタルコンテンツサービスです。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>願い灯 | AI エンターテイメント</title>
+<meta name="description" content="願い灯 - AIを活用したエンターテイメントサービス。ペットAI性格診断、宴会ツール、お酒占いなど。">
 <style>
-:root {
-  --dark-green: #1B3A2D;
-  --green: #2D6A4F;
-  --light-green: #40916C;
-  --accent: #D4A853;
-  --accent-light: #E8C97A;
-  --cream: #FBF8F1;
-  --warm-white: #FFFFFF;
-  --dark-text: #1E1E1E;
-  --muted: #6B7280;
-  --light-muted: #9CA3AF;
-  --card-bg: #F7F4ED;
-  --card-border: #E8E2D4;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Noto Sans JP', sans-serif;
-  color: var(--dark-text);
-  background: var(--cream);
-  line-height: 1.8;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ===== HERO ===== */
-.hero {
-  background: var(--dark-green);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  padding: 2rem;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -120px;
-  left: -120px;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: rgba(45, 106, 79, 0.35);
-  animation: float1 12s ease-in-out infinite;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -80px;
-  right: -80px;
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  background: rgba(45, 106, 79, 0.25);
-  animation: float2 10s ease-in-out infinite;
-}
-
-@keyframes float1 {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(30px, 20px); }
-}
-@keyframes float2 {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-20px, -30px); }
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-}
-
-.hero-paw {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  animation: fadeInDown 0.8s ease;
-}
-
-.hero-label {
-  color: var(--accent-light);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.3em;
-  margin-bottom: 1rem;
-  animation: fadeInUp 0.8s ease 0.2s both;
-}
-
-.hero-title {
-  font-family: 'Noto Serif JP', serif;
-  color: var(--warm-white);
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  font-weight: 700;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-  animation: fadeInUp 0.8s ease 0.4s both;
-}
-
-.hero-divider {
-  width: 80px;
-  height: 2px;
-  background: var(--accent);
-  margin: 1.5rem auto;
-  animation: fadeInUp 0.8s ease 0.5s both;
-}
-
-.hero-subtitle {
-  color: #AABBAA;
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  animation: fadeInUp 0.8s ease 0.6s both;
-}
-
-.hero-cta {
-  display: inline-block;
-  background: var(--accent);
-  color: var(--dark-green);
-  padding: 0.9rem 2.5rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  animation: fadeInUp 0.8s ease 0.8s both;
-}
-.hero-cta:hover {
-  background: var(--accent-light);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 168, 83, 0.3);
-}
-
-.hero-badge {
-  display: inline-block;
-  margin-top: 1.5rem;
-  background: rgba(45, 106, 79, 0.4);
-  color: var(--accent-light);
-  padding: 0.4rem 1.2rem;
-  border-radius: 30px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  animation: fadeInUp 0.8s ease 1s both;
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== SECTIONS ===== */
-section {
-  padding: 5rem 1.5rem;
-}
-
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.section-label {
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-
-.section-title {
-  font-family: 'Noto Serif JP', serif;
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
-  color: var(--dark-green);
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.section-desc {
-  color: var(--muted);
-  font-size: 0.95rem;
-  max-width: 600px;
-  margin-bottom: 3rem;
-}
-
-/* ===== ABOUT ===== */
-.about {
-  background: var(--warm-white);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.about-card {
-  background: var(--cream);
-  border-left: 4px solid var(--green);
-  padding: 1.8rem;
-  border-radius: 0 8px 8px 0;
-  transition: transform 0.3s ease;
-}
-.about-card:hover { transform: translateY(-3px); }
-
-.about-card-icon {
-  font-size: 1.8rem;
-  margin-bottom: 0.8rem;
-}
-
-.about-card h3 {
-  font-size: 1rem;
-  color: var(--dark-green);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.about-card p {
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-/* ===== HOW IT WORKS ===== */
-.how {
-  background: var(--cream);
-}
-
-.steps {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.step {
-  background: var(--warm-white);
-  border-radius: 12px;
-  padding: 1.5rem 1.2rem;
-  text-align: center;
-  flex: 1;
-  min-width: 140px;
-  max-width: 170px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-  position: relative;
-  transition: transform 0.3s ease;
-}
-.step:hover { transform: translateY(-3px); }
-
-.step-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--green);
-  color: white;
-  font-size: 0.85rem;
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-}
-
-.step-icon {
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
-}
-
-.step h3 {
-  font-size: 0.85rem;
-  color: var(--dark-green);
-  font-weight: 600;
-}
-
-.step-arrow {
-  display: flex;
-  align-items: center;
-  color: var(--accent);
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-  .step-arrow { display: none; }
-  .steps { gap: 0.8rem; }
-  .step { min-width: calc(50% - 0.5rem); max-width: none; }
-}
-
-/* ===== PRICING ===== */
-.pricing {
-  background: var(--warm-white);
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-  max-width: 800px;
-}
-
-.price-card {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
-  background: var(--warm-white);
-  transition: transform 0.3s ease;
-}
-.price-card:hover { transform: translateY(-4px); }
-.price-card.featured {
-  border: 2px solid var(--accent);
-  transform: scale(1.03);
-}
-.price-card.featured:hover { transform: scale(1.03) translateY(-4px); }
-
-.price-header {
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.price-card:first-child .price-header { background: var(--green); }
-.price-card.featured .price-header { background: var(--accent); }
-
-.price-badge {
-  display: inline-block;
-  background: rgba(255,255,255,0.2);
-  color: white;
-  padding: 0.2rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.price-name {
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.price-amount {
-  color: white;
-  font-family: 'Noto Serif JP', serif;
-  font-size: 2.2rem;
-  font-weight: 700;
-}
-
-.price-amount span {
-  font-size: 1rem;
-}
-
-.price-body {
-  padding: 1.5rem;
-}
-
-.price-body ul {
-  list-style: none;
-  padding: 0;
-}
-
-.price-body li {
-  padding: 0.4rem 0;
-  font-size: 0.85rem;
-  color: var(--muted);
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.price-body li::before {
-  content: '✓';
-  color: var(--green);
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.price-note {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--light-muted);
-  font-style: italic;
-}
-
-/* ===== PARTNER ===== */
-.partner {
-  background: var(--dark-green);
-  color: white;
-  text-align: center;
-}
-
-.partner .section-label { color: var(--accent-light); }
-.partner .section-title { color: white; }
-.partner .section-desc { color: #AABBAA; margin: 0 auto 2rem; }
-
-.partner-features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.partner-feature {
-  background: rgba(45, 106, 79, 0.3);
-  border-radius: 10px;
-  padding: 1.5rem;
-}
-
-.partner-feature-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-.partner-feature h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; }
-.partner-feature p { font-size: 0.8rem; color: #AABBAA; }
-
-/* ===== COMPANY ===== */
-.company {
-  background: var(--cream);
-}
-
-.company-table {
-  width: 100%;
-  max-width: 600px;
-  border-collapse: collapse;
-  margin-top: 1.5rem;
-}
-
-.company-table th,
-.company-table td {
-  padding: 0.8rem 1rem;
-  text-align: left;
-  font-size: 0.9rem;
-  border-bottom: 1px solid var(--card-border);
-}
-
-.company-table th {
-  color: var(--dark-green);
-  font-weight: 600;
-  width: 140px;
-  vertical-align: top;
-}
-
-.company-table td {
-  color: var(--muted);
-}
-
-/* ===== LEGAL ===== */
-.legal {
-  background: var(--warm-white);
-}
-
-.legal-section {
-  margin-bottom: 2.5rem;
-}
-
-.legal-section h3 {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 1.2rem;
-  color: var(--dark-green);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--card-border);
-}
-
-.legal-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-}
-
-.legal-table th,
-.legal-table td {
-  padding: 0.7rem 0.8rem;
-  text-align: left;
-  font-size: 0.85rem;
-  border-bottom: 1px solid var(--card-border);
-}
-
-.legal-table th {
-  color: var(--dark-green);
-  font-weight: 600;
-  width: 180px;
-  vertical-align: top;
-  background: var(--card-bg);
-}
-
-.legal-table td {
-  color: var(--muted);
-}
-
-.legal-text {
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.9;
-  margin-bottom: 1rem;
-}
-
-.legal-text h4 {
-  font-size: 0.95rem;
-  color: var(--dark-text);
-  font-weight: 600;
-  margin: 1.5rem 0 0.5rem;
-}
-
-.legal-text ul {
-  padding-left: 1.5rem;
-  margin: 0.5rem 0;
-}
-
-.legal-text li {
-  margin-bottom: 0.3rem;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  background: var(--dark-green);
-  color: #8B8B8B;
-  text-align: center;
-  padding: 2.5rem 1.5rem;
-}
-
-.footer-brand {
-  font-family: 'Noto Serif JP', serif;
-  color: var(--warm-white);
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 1rem 0;
-}
-
-.footer-links a {
-  color: #AABBAA;
-  text-decoration: none;
-  font-size: 0.8rem;
-  transition: color 0.3s ease;
-}
-.footer-links a:hover { color: var(--accent-light); }
-
-.footer-copy {
-  font-size: 0.75rem;
-  margin-top: 1rem;
-}
-
-/* ===== NAV ===== */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: rgba(27, 58, 45, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 0.8rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
-}
-.nav.visible { transform: translateY(0); }
-
-.nav-brand {
-  font-family: 'Noto Serif JP', serif;
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  color: #AABBAA;
-  text-decoration: none;
-  font-size: 0.8rem;
-  transition: color 0.3s ease;
-}
-.nav-links a:hover { color: var(--accent-light); }
-
-@media (max-width: 600px) {
-  .nav-links { gap: 0.8rem; }
-  .nav-links a { font-size: 0.7rem; }
-}
-
-/* ===== SCROLL ANIMATIONS ===== */
-.fade-in {
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+@import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+:root{
+  --bg:#1a2a1f;--bg2:#14221a;--bg3:#0e1a12;
+  --card:#1e3025;--card2:#243828;
+  --green:#2d5a3a;--green2:#3a7a4e;--green3:#4a9a60;
+  --gold:#c9a84c;--gold2:#a88a3a;--gold3:#e8c960;--gold4:#f0d878;
+  --wht:#f0ece0;--cream:#e8e0d0;--grey:#7a8a7e;--grey2:#556058;
+  --dark:#0a120e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg3);color:var(--wht);font-family:'Noto Sans JP',sans-serif;line-height:1.8;overflow-x:hidden}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 20% 30%,rgba(45,90,58,0.4),transparent),radial-gradient(ellipse 50% 60% at 80% 70%,rgba(45,90,58,0.3),transparent),radial-gradient(ellipse 40% 40% at 50% 50%,rgba(201,168,76,0.05),transparent);z-index:0}
+.hero-bg::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+/* Floating circles */
+.hero-circle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(45,90,58,0.25),transparent 70%);z-index:0}
+.hc1{width:400px;height:400px;top:-80px;left:-100px;animation:hFloat 20s ease-in-out infinite}
+.hc2{width:300px;height:300px;bottom:-60px;right:-80px;animation:hFloat 25s ease-in-out infinite reverse}
+.hc3{width:200px;height:200px;top:40%;right:10%;animation:hFloat 18s ease-in-out infinite 3s}
+@keyframes hFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(20px,-15px) scale(1.05)}66%{transform:translate(-15px,20px) scale(0.95)}}
+
+.hero-content{position:relative;z-index:1}
+.hero-paw{font-size:48px;margin-bottom:12px;opacity:0;animation:fadeUp 1s 0.2s ease forwards}
+.hero-label{font-size:clamp(11px,2.8vw,14px);letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;opacity:0;animation:fadeUp 1s 0.4s ease forwards}
+.hero-title{font-family:'Zen Old Mincho',serif;font-size:clamp(48px,10vw,80px);font-weight:900;line-height:1.15;margin-bottom:16px;opacity:0;animation:fadeUp 1s 0.6s ease forwards}
+.hero-title span{background:linear-gradient(135deg,var(--gold3),var(--gold4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-family:'Shippori Mincho',serif;font-size:clamp(14px,3.5vw,18px);color:var(--cream);opacity:0.7;max-width:480px;margin:0 auto 32px;line-height:2;opacity:0;animation:fadeUp 1s 0.8s ease forwards}
+.hero-line{width:60px;height:2px;background:var(--gold2);margin:0 auto 28px;opacity:0;animation:fadeUp 1s 0.7s ease forwards}
+.hero-cta{display:inline-block;padding:14px 36px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:var(--dark);font-family:'Zen Old Mincho',serif;font-size:clamp(15px,3.8vw,18px);font-weight:700;letter-spacing:0.15em;border-radius:4px;text-decoration:none;transition:all 0.3s;opacity:0;animation:fadeUp 1s 1s ease forwards}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.2)}
+
+.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--grey);letter-spacing:0.2em;opacity:0;animation:fadeUp 1s 1.2s ease forwards}
+.hero-scroll::after{content:'';display:block;width:1px;height:30px;background:var(--gold2);margin:8px auto 0;animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{opacity:0.2;height:20px}50%{opacity:0.6;height:35px}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION */
+.section{max-width:880px;margin:0 auto;padding:80px 20px}
+.section-label{font-size:clamp(10px,2.5vw,12px);letter-spacing:0.4em;color:var(--gold2);text-transform:uppercase;margin-bottom:8px}
+.section-title{font-family:'Zen Old Mincho',serif;font-size:clamp(28px,6vw,42px);font-weight:900;margin-bottom:12px}
+.section-desc{font-size:clamp(13px,3.2vw,15px);color:var(--grey);max-width:560px;margin-bottom:40px;line-height:2}
+
+/* APP CARDS */
+.app-grid{display:flex;flex-direction:column;gap:20px}
+.app-card{background:var(--card);border:1px solid rgba(201,168,76,0.08);border-radius:12px;padding:28px 24px;display:flex;gap:20px;align-items:flex-start;transition:all 0.4s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
+.app-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold2);opacity:0;transition:opacity 0.3s}
+.app-card:hover{border-color:rgba(201,168,76,0.2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
+.app-card:hover::before{opacity:1}
+.app-icon{font-size:clamp(40px,10vw,56px);flex-shrink:0;line-height:1}
+.app-body{flex:1;min-width:0}
+.app-name{font-family:'Zen Old Mincho',serif;font-size:clamp(20px,5vw,26px);font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.app-badge{font-size:11px;padding:2px 10px;border-radius:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;letter-spacing:0.05em}
+.badge-free{background:rgba(74,154,96,0.15);color:var(--green3);border:1px solid rgba(74,154,96,0.2)}
+.badge-paid{background:rgba(201,168,76,0.12);color:var(--gold3);border:1px solid rgba(201,168,76,0.2)}
+.badge-new{background:rgba(208,48,48,0.12);color:#e06040;border:1px solid rgba(208,48,48,0.2)}
+.badge-nasu{background:rgba(168,138,58,0.12);color:var(--gold);border:1px solid rgba(168,138,58,0.2)}
+.app-desc{font-size:clamp(12px,3vw,14px);color:var(--grey);line-height:1.8;margin-bottom:12px}
+.app-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.app-tag{font-size:11px;padding:2px 8px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--grey2);border:1px solid rgba(255,255,255,0.05)}
+.app-price{font-family:'Zen Old Mincho',serif;font-size:clamp(16px,4vw,20px);font-weight:700;color:var(--gold3)}
+.app-price small{font-size:12px;color:var(--grey);font-weight:400;margin-left:4px}
+.app-arrow{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--gold2);opacity:0.3;transition:all 0.3s}
+.app-card:hover .app-arrow{opacity:0.8;right:16px}
+
+/* BRAND STORY */
+.story{background:var(--bg2);border-top:1px solid rgba(201,168,76,0.06);border-bottom:1px solid rgba(201,168,76,0.06)}
+.story-content{max-width:640px;margin:0 auto;text-align:center}
+.story-text{font-family:'Shippori Mincho',serif;font-size:clamp(15px,3.8vw,18px);line-height:2.2;color:var(--cream);opacity:0.8}
+.story-text em{color:var(--gold3);font-style:normal}
+
+/* PRICING TABLE */
+.price-table{width:100%;border-collapse:collapse;margin-top:20px}
+.price-table th{font-family:'Zen Old Mincho',serif;text-align:left;padding:12px 16px;background:rgba(201,168,76,0.04);color:var(--gold);font-weight:700;font-size:14px;border-bottom:1px solid rgba(201,168,76,0.1)}
+.price-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.03);font-size:14px;color:var(--cream)}
+.price-table td:last-child{font-family:'Zen Old Mincho',serif;font-weight:700;color:var(--gold3);text-align:right;white-space:nowrap}
+.price-table tr:hover td{background:rgba(201,168,76,0.02)}
+
+/* TOKUSHOHO */
+.legal{background:var(--bg2);border-top:1px solid rgba(201,168,76,0.06)}
+.legal-table{width:100%;border-collapse:collapse;font-size:13px}
+.legal-table th{text-align:left;padding:12px 14px;background:rgba(201,168,76,0.03);color:var(--gold2);font-weight:500;width:28%;border-bottom:1px solid rgba(201,168,76,0.06);vertical-align:top}
+.legal-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.02);color:var(--grey)}
+
+/* FOOTER */
+footer{text-align:center;padding:40px 20px;font-size:11px;color:rgba(122,138,126,0.4)}
+footer a{color:var(--gold2);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .app-card{flex-direction:column;gap:12px}
+  .app-arrow{display:none}
+  .legal-table th{width:35%}
+}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s,transform 0.8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="nav" id="nav">
-  <a href="#" class="nav-brand">🐾 願い灯</a>
-  <div class="nav-links">
-    <a href="#about">サービス概要</a>
-    <a href="#pricing">料金</a>
-    <a href="#legal">特商法表記</a>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-circle hc1"></div>
+    <div class="hero-circle hc2"></div>
+    <div class="hero-circle hc3"></div>
   </div>
-</nav>
-
-<!-- Hero -->
-<section class="hero" id="top">
   <div class="hero-content">
-    <div class="hero-paw">🐾</div>
-    <div class="hero-label">AI PET PERSONALITY ANALYSIS</div>
-    <h1 class="hero-title">「うちの子からの<br>メッセージ」</h1>
-    <div class="hero-divider"></div>
-    <p class="hero-subtitle">AIがあなたのペットの写真を解析し、<br>性格傾向と飼い主への特別なメッセージをお届けします。</p>
-    <a href="#about" class="hero-cta">サービス詳細を見る</a>
-    <div class="hero-badge">📍 那須ハイランドパーク様にて導入予定</div>
+    <div class="hero-paw">🕯</div>
+    <div class="hero-label">AI Entertainment Platform</div>
+    <h1 class="hero-title"><span>願い灯</span></h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">
+      AIの力で、日常にちょっとした驚きと笑いを。<br>
+      ペット診断から宴会ツールまで、<br>
+      ひとつひとつに「遊び心」を灯します。
+    </p>
+    <a href="#apps" class="hero-cta">サービスを見る</a>
   </div>
+  <div class="hero-scroll">SCROLL<br></div>
 </section>
 
-<!-- About -->
-<section class="about" id="about">
-  <div class="container">
-    <div class="fade-in">
-      <div class="section-label">SERVICE</div>
-      <h2 class="section-title">サービス概要</h2>
-      <p class="section-desc">AI画像解析技術を活用し、ペットの写真から性格傾向を分析。飼い主への特別なメッセージと共に、家族とペットの絆を可視化するデジタルコンテンツサービスです。</p>
-    </div>
+<!-- APPS -->
+<section class="section" id="apps">
+  <div class="section-label">Services</div>
+  <div class="section-title reveal">サービス一覧</div>
+  <div class="section-desc reveal">願い灯が提供するAIエンターテイメント。</div>
 
-    <div class="about-grid">
-      <div class="about-card fade-in">
-        <div class="about-card-icon">🤖</div>
-        <h3>AI画像解析</h3>
-        <p>独自のAIモデルがペットの表情・姿勢・特徴を解析し、性格傾向を導き出します。</p>
-      </div>
-      <div class="about-card fade-in">
-        <div class="about-card-icon">💌</div>
-        <h3>メッセージ生成</h3>
-        <p>解析結果をもとに、ペットから飼い主への心のこもったメッセージを自動生成します。</p>
-      </div>
-      <div class="about-card fade-in">
-        <div class="about-card-icon">🖼️</div>
-        <h3>デジタルコンテンツ</h3>
-        <p>オリジナルデザインのビジュアルカードとして出力。保存・SNSシェアが可能です。</p>
-      </div>
-      <div class="about-card fade-in">
-        <div class="about-card-icon">📱</div>
-        <h3>スマホ完結</h3>
-        <p>QRコードを読み取り、写真をアップロードするだけ。所要時間は約3分です。</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <div class="app-grid">
 
-<!-- How it Works -->
-<section class="how" id="how">
-  <div class="container">
-    <div class="fade-in">
-      <div class="section-label">HOW IT WORKS</div>
-      <h2 class="section-title">ご利用の流れ</h2>
-      <p class="section-desc">スマートフォンだけで完結する、簡単3分の体験です。</p>
-    </div>
-
-    <div class="steps fade-in">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-icon">📷</div>
-        <h3>QRコード読み取り</h3>
-      </div>
-      <div class="step-arrow">▶</div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-icon">🐕</div>
-        <h3>ペット写真アップロード</h3>
-      </div>
-      <div class="step-arrow">▶</div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-icon">✨</div>
-        <h3>AI解析・メッセージ表示</h3>
-      </div>
-      <div class="step-arrow">▶</div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-icon">💾</div>
-        <h3>保存・SNS共有</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Pricing -->
-<section class="pricing" id="pricing">
-  <div class="container">
-    <div class="fade-in">
-      <div class="section-label">PRICING</div>
-      <h2 class="section-title">料金プラン</h2>
-      <p class="section-desc">体験スタイルに合わせた2つのプランをご用意しています。</p>
-    </div>
-
-    <div class="pricing-grid fade-in">
-      <div class="price-card">
-        <div class="price-header">
-          <div class="price-name">STANDARD</div>
-          <div class="price-amount"><span>¥</span>500<span>（税込）</span></div>
+    <!-- ペットAI -->
+    <a href="https://hideo-t.github.io/negaibi/pet/" class="app-card reveal">
+      <div class="app-icon">🐾</div>
+      <div class="app-body">
+        <div class="app-name">
+          うちの子からのメッセージ
+          <span class="app-badge badge-nasu">📍 那須ハイランドパーク</span>
         </div>
-        <div class="price-body">
-          <ul>
-            <li>フルAI性格診断</li>
-            <li>飼い主へのメッセージ</li>
-            <li>オリジナルフレーム付き画像</li>
-            <li>画像の保存・ダウンロード</li>
-            <li>SNSシェア機能</li>
-          </ul>
+        <div class="app-desc">
+          AIがあなたのペットの写真を解析し、性格傾向と飼い主への特別なメッセージをお届けします。
         </div>
+        <div class="app-tags">
+          <span class="app-tag">🤖 AI画像解析</span>
+          <span class="app-tag">🐕 犬・猫対応</span>
+          <span class="app-tag">💌 メッセージ生成</span>
+        </div>
+        <div class="app-price">¥500 <small>（税込）</small></div>
       </div>
+      <div class="app-arrow">→</div>
+    </a>
 
-      <div class="price-card featured">
-        <div class="price-header">
-          <div class="price-badge">✦ おすすめ</div>
-          <div class="price-name">PREMIUM</div>
-          <div class="price-amount"><span>¥</span>1,200<span>（税込）</span></div>
+    <!-- ベロメーター -->
+    <a href="https://hideo-t.github.io/berometer/" class="app-card reveal">
+      <div class="app-icon">🍺</div>
+      <div class="app-body">
+        <div class="app-name">
+          ベロメーター
+          <span class="app-badge badge-new">🆕 NEW</span>
         </div>
-        <div class="price-body">
-          <ul>
-            <li>フルAI性格診断</li>
-            <li>飼い主へのメッセージ</li>
-            <li>施設限定デザインフレーム</li>
-            <li>季節限定フレーム</li>
-            <li>愛犬との相性診断</li>
-            <li>複数ペット対応</li>
-            <li>画像の保存・ダウンロード</li>
-            <li>SNSシェア機能</li>
-          </ul>
+        <div class="app-desc">
+          マイクに息や歌を吹き込んで「酔い度」を測定する宴会エンターテイメント。
+          無料の基本モード＋プレミアムモードで全機能解放。福島の日本酒おすすめ付き。
         </div>
+        <div class="app-tags">
+          <span class="app-tag">💋 色っぽく吹く（無料）</span>
+          <span class="app-tag">🎤 歌って測定</span>
+          <span class="app-tag">🫁 息ロングレンジ</span>
+          <span class="app-tag">🍶 福島地酒おすすめ</span>
+        </div>
+        <div class="app-price">基本無料 / プレミアム ¥300 <small>（税込・買い切り）</small></div>
+      </div>
+      <div class="app-arrow">→</div>
+    </a>
+
+    <!-- 今宵の酒運 -->
+    <a href="https://hideo-t.github.io/negaibi/sakeun_v2.html" class="app-card reveal">
+      <div class="app-icon">🏺</div>
+      <div class="app-body">
+        <div class="app-name">
+          今宵の酒運
+          <span class="app-badge badge-free">🆓 無料</span>
+        </div>
+        <div class="app-desc">
+          今夜のあなたにふさわしい日本酒を、AIが運命的に選び出すお酒占い。
+          福島県の蔵元79銘柄から「酒の運命」を暴きます。日替わり結果で毎日楽しめる。
+        </div>
+        <div class="app-tags">
+          <span class="app-tag">🔮 日替わり運勢</span>
+          <span class="app-tag">🏺 福島79銘柄</span>
+          <span class="app-tag">👑 世界王の審判</span>
+        </div>
+        <div class="app-price">無料</div>
+      </div>
+      <div class="app-arrow">→</div>
+    </a>
+
+    <!-- COMING SOON -->
+    <div class="app-card reveal" style="opacity:0.5;cursor:default">
+      <div class="app-icon">🔮</div>
+      <div class="app-body">
+        <div class="app-name" style="color:var(--grey)">次のサービス…</div>
+        <div class="app-desc">新しいAIエンターテイメントを準備中です。お楽しみに。</div>
+        <div class="app-price" style="color:var(--grey)">Coming Soon</div>
       </div>
     </div>
 
-    <p class="price-note fade-in">※ お支払いはクレジットカード（Visa, Mastercard, JCB, AMEX）に対応しています。<br>※ デジタルコンテンツの性質上、購入後の返品・返金は原則としてお受けしておりません。</p>
   </div>
 </section>
 
-<!-- Partner Section -->
-<section class="partner">
-  <div class="container">
-    <div class="fade-in">
-      <div class="section-label">FOR PARTNERS</div>
-      <h2 class="section-title">施設・テーマパーク様へ</h2>
-      <p class="section-desc">ペット同伴施設様向けに、初期費用ゼロ・運営負担ゼロで導入いただけるレベニューシェアモデルをご用意しています。</p>
-    </div>
-
-    <div class="partner-features fade-in">
-      <div class="partner-feature">
-        <div class="partner-feature-icon">💰</div>
-        <h3>初期費用ゼロ</h3>
-        <p>導入費用・固定費・在庫リスクは一切発生しません。</p>
-      </div>
-      <div class="partner-feature">
-        <div class="partner-feature-icon">🤝</div>
-        <h3>レベニューシェア</h3>
-        <p>売上に応じた収益分配モデル。売上がなければ費用もゼロ。</p>
-      </div>
-      <div class="partner-feature">
-        <div class="partner-feature-icon">🔧</div>
-        <h3>運営負担ゼロ</h3>
-        <p>完全無人・スマホ完結型。専用端末・人員配置は不要です。</p>
-      </div>
-      <div class="partner-feature">
-        <div class="partner-feature-icon">📊</div>
-        <h3>月次レポート</h3>
-        <p>利用数・売上・満足度を定期的にご報告いたします。</p>
+<!-- BRAND STORY -->
+<section class="story">
+  <div class="section" style="padding-top:60px;padding-bottom:60px">
+    <div class="story-content reveal">
+      <div style="font-size:32px;margin-bottom:16px">🕯</div>
+      <div class="story-text">
+        テクノロジーは、もっと<em>楽しく</em>ていい。<br>
+        AIは、もっと<em>身近</em>でいい。<br><br>
+        願い灯は、AIを使って<br>
+        人と人、人とペットの間に<br>
+        小さな驚きと笑顔を灯すサービスです。
       </div>
     </div>
   </div>
 </section>
 
-<!-- Company Info -->
-<section class="company" id="company">
-  <div class="container">
-    <div class="fade-in">
-      <div class="section-label">COMPANY</div>
-      <h2 class="section-title">事業者情報</h2>
-    </div>
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-label reveal">Pricing</div>
+  <div class="section-title reveal">料金一覧</div>
+  <div class="section-desc reveal">すべて税込価格です。追加料金はありません。</div>
 
-    <table class="company-table fade-in">
-      <tr><th>事業者名</th><td>願い灯</td></tr>
-      <tr><th>事業形態</th><td>個人事業</td></tr>
-      <tr><th>代表者</th><td>【高橋秀夫】】</td></tr>
-      <tr><th>所在地</th><td>【福島県白河市五郎窪３８－１】</td></tr>
-      <tr><th>メール</th><td>【admin@wkjp.net】</td></tr>
-      <tr><th>事業内容</th><td>AI技術を活用したデジタルコンテンツの企画・開発・提供</td></tr>
+  <table class="price-table reveal">
+    <tr>
+      <th>サービス名</th>
+      <th>内容</th>
+      <th>料金</th>
+    </tr>
+    <tr>
+      <td>🐾 うちの子からのメッセージ</td>
+      <td>ペットAI性格診断＋メッセージ</td>
+      <td>¥500</td>
+    </tr>
+    <tr>
+      <td>🍺 ベロメーター（基本）</td>
+      <td>色っぽく吹くモード</td>
+      <td>無料</td>
+    </tr>
+    <tr>
+      <td>🍺 ベロメーター プレミアム</td>
+      <td>全モード解放（歌って測定・息ロングレンジ）</td>
+      <td>¥300</td>
+    </tr>
+    <tr>
+      <td>🏺 今宵の酒運</td>
+      <td>AI酒占い・福島79銘柄</td>
+      <td>無料</td>
+    </tr>
+  </table>
+
+  <div style="margin-top:20px;font-size:13px;color:var(--grey);line-height:1.8" class="reveal">
+    ※ 有料サービスの決済はStripeを利用しています。<br>
+    ※ 対応決済手段：クレジットカード / Apple Pay / Google Pay / PayPay
+  </div>
+</section>
+
+<!-- TOKUSHOHO -->
+<section class="legal" id="tokushoho">
+  <div class="section">
+    <div class="section-label reveal">Legal</div>
+    <div class="section-title reveal">特定商取引法に基づく表記</div>
+    <div style="height:24px"></div>
+
+    <table class="legal-table reveal">
+      <tr><th>販売事業者</th><td>願い灯</td></tr>
+      <tr><th>運営責任者</th><td>高橋 秀夫</td></tr>
+      <tr><th>所在地</th><td>〒969-0305 福島県白河市大信 田園町府1-109</td></tr>
+      <tr><th>連絡先</th><td>メールにてお問い合わせください。ご連絡いただき次第、速やかに対応いたします。</td></tr>
+      <tr><th>販売価格</th><td>各サービスページおよび上記料金一覧に記載の価格（税込）</td></tr>
+      <tr><th>支払方法</th><td>クレジットカード（VISA / Mastercard / AMEX / JCB）、Apple Pay、Google Pay、PayPay<br>※ Stripe決済を利用</td></tr>
+      <tr><th>支払時期</th><td>購入手続き完了時に即時決済</td></tr>
+      <tr><th>商品引渡し時期</th><td>決済完了後、即時にサービスをご利用いただけます</td></tr>
+      <tr><th>返品・キャンセル</th><td>デジタルコンテンツの性質上、購入後の返品・返金は原則としてお受けしておりません。サービスに不具合がある場合はお問い合わせください。</td></tr>
+      <tr><th>動作環境</th><td>マイク付きスマートフォンまたはPC<br>対応ブラウザ：Chrome / Safari / Edge（最新版推奨）</td></tr>
     </table>
   </div>
 </section>
 
-<!-- Legal -->
-<section class="legal" id="legal">
-  <div class="container">
-    <div class="fade-in">
-      <div class="section-label">LEGAL</div>
-      <h2 class="section-title">特定商取引法に基づく表記</h2>
-    </div>
-
-    <div class="legal-section fade-in">
-      <table class="legal-table">
-        <tr><th>販売事業者</th><td>願い灯</td></tr>
-        <tr><th>代表者</th><td>【高橋秀夫】</td></tr>
-        <tr><th>所在地</th><td>【福島県白河市五郎窪３８－１】※ 請求があった場合に遅滞なく開示いたします</td></tr>
-        <tr><th>連絡先</th><td>メール：【admin@wkjp.net】<br>※ お問い合わせはメールにて承ります</td></tr>
-        <tr><th>電話番号</th><td>【070-8311-1747】※ 請求があった場合に遅滞なく開示いたします</td></tr>
-        <tr><th>販売価格</th><td>Standard プラン：500円（税込）<br>Premium プラン：1,200円（税込）</td></tr>
-        <tr><th>支払方法</th><td>クレジットカード（Visa, Mastercard, JCB, American Express）</td></tr>
-        <tr><th>支払時期</th><td>サービス利用時に即時決済</td></tr>
-        <tr><th>商品の引渡時期</th><td>決済完了後、即時にデジタルコンテンツを提供</td></tr>
-        <tr><th>返品・キャンセル</th><td>デジタルコンテンツの性質上、購入後の返品・返金は原則としてお受けしておりません。ただし、システム障害等によりサービスが正常に提供されなかった場合は、全額返金いたします。</td></tr>
-        <tr><th>動作環境</th><td>iOS 15以降 / Android 10以降のスマートフォン<br>推奨ブラウザ：Safari, Chrome</td></tr>
-        <tr><th>その他費用</th><td>インターネット接続に必要な通信料はお客様のご負担となります。</td></tr>
-      </table>
-    </div>
-
-    <div class="legal-section fade-in" id="privacy">
-      <h3>プライバシーポリシー</h3>
-      <div class="legal-text">
-        <p>願い灯（以下「当方」）は、「うちの子からのメッセージ」サービス（以下「本サービス」）における個人情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
-
-        <h4>1. 収集する情報</h4>
-        <p>本サービスでは、以下の情報を収集します。</p>
-        <ul>
-          <li>ペットの写真データ（AI解析のために使用）</li>
-          <li>ペットの名前（コンテンツ生成のために使用）</li>
-          <li>決済に必要な情報（クレジットカード情報は決済代行会社が直接処理し、当方では保持しません）</li>
-          <li>サービス利用に伴うアクセスログ（IPアドレス、ブラウザ情報等）</li>
-        </ul>
-
-        <h4>2. 情報の利用目的</h4>
-        <p>収集した情報は、以下の目的に限り利用します。</p>
-        <ul>
-          <li>本サービスの提供・運営</li>
-          <li>AI解析によるコンテンツの生成</li>
-          <li>決済処理</li>
-          <li>サービスの改善・品質向上</li>
-          <li>お問い合わせへの対応</li>
-        </ul>
-
-        <h4>3. 情報の第三者提供</h4>
-        <p>当方は、法令に基づく場合を除き、お客様の個人情報を第三者に提供することはありません。ただし、以下の場合を除きます。</p>
-        <ul>
-          <li>お客様の同意がある場合</li>
-          <li>決済処理に必要な範囲で決済代行会社に提供する場合</li>
-          <li>法令に基づき開示が求められた場合</li>
-        </ul>
-
-        <h4>4. 写真データの取り扱い</h4>
-        <p>アップロードされたペットの写真データは、AI解析およびコンテンツ生成の目的にのみ使用します。解析処理完了後、サーバー上の写真データは一定期間（最大30日）経過後に自動削除されます。</p>
-
-        <h4>5. クレジットカード情報</h4>
-        <p>クレジットカード情報は、PCI DSS準拠の決済代行会社（Stripe, Inc.）が直接処理します。当方のサーバーにカード情報が保存されることはありません。</p>
-
-        <h4>6. セキュリティ</h4>
-        <p>当方は、個人情報の漏洩、滅失、毀損を防止するため、適切なセキュリティ対策を講じます。通信はSSL/TLSにより暗号化されます。</p>
-
-        <h4>7. Cookie（クッキー）について</h4>
-        <p>本サービスでは、サービスの利便性向上のためにCookieを使用する場合があります。お客様のブラウザ設定でCookieを無効にすることも可能ですが、一部のサービス機能が制限される場合があります。</p>
-
-        <h4>8. プライバシーポリシーの変更</h4>
-        <p>当方は、必要に応じて本プライバシーポリシーを変更する場合があります。変更後のポリシーは、本ページに掲載した時点で効力を生じるものとします。</p>
-
-        <h4>9. お問い合わせ</h4>
-        <p>個人情報の取り扱いに関するお問い合わせは、下記までご連絡ください。</p>
-        <p>願い灯<br>メール：【admin@wkjp.net】</p>
-
-        <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--light-muted);">制定日：2026年2月<br>最終更新日：2026年2月</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
 <footer>
-  <div class="footer-brand">🐾 願い灯</div>
-  <p style="font-size: 0.8rem; color: #AABBAA; margin-bottom: 0.5rem;">AI技術を活用したデジタルコンテンツの企画・開発・提供</p>
-  <div class="footer-links">
-    <a href="#about">サービス概要</a>
-    <a href="#pricing">料金プラン</a>
-    <a href="#company">事業者情報</a>
-    <a href="#legal">特定商取引法に基づく表記</a>
-    <a href="#privacy">プライバシーポリシー</a>
-  </div>
-  <p class="footer-copy">© 2026 願い灯 All Rights Reserved.</p>
+  <p style="font-size:13px;margin-bottom:8px"><a href="#apps">サービス一覧</a>　|　<a href="#pricing">料金</a>　|　<a href="#tokushoho">特定商取引法に基づく表記</a></p>
+  <p>© 2025 願い灯 / NEGAIBI — All rights reserved.</p>
 </footer>
 
 <script>
-// Navbar show on scroll
-const nav = document.getElementById('nav');
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  if (currentScroll > 400) {
-    nav.classList.add('visible');
-  } else {
-    nav.classList.remove('visible');
-  }
-  lastScroll = currentScroll;
-});
-
-// Fade-in on scroll
-const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
+// Scroll reveal
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>{obs.observe(el)});
 </script>
-
 </body>
 </html>
