@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス・料金一覧 | 願い灯</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+:root{--bg:#0e0e14;--card:#15151e;--gold:#c9a84c;--gold2:#e8c960;--wht:#e0dcd0;--grey:#888;--accent:#d03030}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--wht);font-family:'Noto Sans JP',sans-serif;line-height:1.8;min-height:100vh}
+
+header{text-align:center;padding:60px 20px 40px;border-bottom:1px solid rgba(201,168,76,0.15)}
+.logo{font-family:'Zen Old Mincho',serif;font-size:clamp(28px,6vw,40px);font-weight:900;color:var(--gold2);letter-spacing:0.1em}
+.logo-sub{font-size:14px;color:var(--grey);margin-top:4px;letter-spacing:0.15em}
+
+.section{max-width:800px;margin:0 auto;padding:40px 20px}
+.section-title{font-family:'Zen Old Mincho',serif;font-size:clamp(22px,5vw,30px);font-weight:700;color:var(--gold);margin-bottom:8px}
+.section-desc{font-size:15px;color:var(--grey);margin-bottom:32px}
+
+.service-card{background:var(--card);border:1px solid rgba(201,168,76,0.12);border-radius:10px;padding:28px 24px;margin-bottom:20px;transition:border-color 0.3s}
+.service-card:hover{border-color:rgba(201,168,76,0.3)}
+.service-header{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.service-emoji{font-size:36px}
+.service-name{font-family:'Zen Old Mincho',serif;font-size:clamp(18px,4.5vw,24px);font-weight:700;flex:1}
+.service-price{font-family:'Zen Old Mincho',serif;font-size:clamp(20px,5vw,28px);font-weight:900;color:var(--gold2)}
+.service-price small{font-size:14px;color:var(--grey);font-weight:400}
+.service-desc{font-size:14px;color:var(--grey);line-height:1.8;margin-bottom:14px}
+.service-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.feature-tag{font-size:12px;padding:3px 10px;border-radius:12px;background:rgba(201,168,76,0.08);color:var(--gold);border:1px solid rgba(201,168,76,0.15)}
+.service-btn{display:inline-block;padding:10px 24px;background:var(--accent);color:#fff;border-radius:6px;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.1em;transition:opacity 0.3s}
+.service-btn:hover{opacity:0.85}
+.free-tag{display:inline-block;padding:3px 12px;border-radius:12px;background:rgba(48,160,80,0.15);color:#30a050;font-size:12px;font-weight:700;margin-left:8px}
+.paid-tag{display:inline-block;padding:3px 12px;border-radius:12px;background:rgba(201,168,76,0.15);color:var(--gold2);font-size:12px;font-weight:700;margin-left:8px}
+
+.divider{border:none;border-top:1px solid rgba(201,168,76,0.08);margin:40px 0}
+
+.info-section{max-width:800px;margin:0 auto;padding:20px 20px 60px}
+.info-title{font-family:'Zen Old Mincho',serif;font-size:18px;color:var(--gold);margin-bottom:16px}
+.info-table{width:100%;border-collapse:collapse;font-size:14px}
+.info-table th{text-align:left;padding:10px 12px;background:rgba(201,168,76,0.05);color:var(--gold);font-weight:500;width:30%;border-bottom:1px solid rgba(201,168,76,0.08);vertical-align:top}
+.info-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--grey)}
+
+footer{text-align:center;padding:30px 20px;border-top:1px solid rgba(201,168,76,0.08);font-size:12px;color:rgba(136,136,136,0.5)}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">願い灯</div>
+  <div class="logo-sub">NEGAIBI — AI Entertainment Services</div>
+</header>
+
+<div class="section">
+  <div class="section-title">🍶 サービス・料金一覧</div>
+  <div class="section-desc">願い灯が提供するAIエンターテイメントサービスの一覧です。</div>
+
+  <!-- ベロメーター -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-emoji">🍺</div>
+      <div class="service-name">ベロメーター<span class="paid-tag">👑 プレミアム</span></div>
+      <div class="service-price">¥300 <small>(税込・買い切り)</small></div>
+    </div>
+    <div class="service-desc">
+      スマホのマイクに息や歌を吹き込んで「酔い度」を測定する宴会エンターテイメントツール。
+      無料の基本モードに加え、プレミアム（¥300）で全モードが解放されます。
+    </div>
+    <div class="service-features">
+      <span class="feature-tag">💋 色っぽく吹く（無料）</span>
+      <span class="feature-tag">🎤 歌って測定（プレミアム）</span>
+      <span class="feature-tag">🫁 息ロングレンジ（プレミアム）</span>
+      <span class="feature-tag">🍶 福島の日本酒おすすめ</span>
+    </div>
+    <a href="https://hideo-t.github.io/berometer/" class="service-btn">🌬 ベロメーターを使う</a>
+  </div>
+
+  <!-- 今宵の酒運 -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-emoji">🏺</div>
+      <div class="service-name">今宵の酒運<span class="free-tag">🆓 無料</span></div>
+      <div class="service-price">無料</div>
+    </div>
+    <div class="service-desc">
+      今夜のあなたにふさわしい日本酒を、AIが運命的に選び出すお酒占いアプリ。
+      福島県の蔵元79銘柄から、あなたの「酒の運命」を暴きます。
+    </div>
+    <div class="service-features">
+      <span class="feature-tag">🔮 日替わり運勢</span>
+      <span class="feature-tag">🏺 福島79銘柄対応</span>
+      <span class="feature-tag">👑 世界王の審判</span>
+    </div>
+    <a href="https://hideo-t.github.io/negaibi/sakeun_v2.html" class="service-btn">🏺 酒運を占う</a>
+  </div>
+
+  <!-- 願い灯 手相AI -->
+  <div class="service-card">
+    <div class="service-header">
+      <div class="service-emoji">🖐️</div>
+      <div class="service-name">願い灯 AI手相鑑定<span class="paid-tag">有料プラン有</span></div>
+      <div class="service-price">¥500〜 <small>(税込)</small></div>
+    </div>
+    <div class="service-desc">
+      AIが手相を読み取り、あなたの運勢を鑑定するサービス。
+      フランチャイズ展開も行っております。
+    </div>
+    <div class="service-features">
+      <span class="feature-tag">🤖 AI画像解析</span>
+      <span class="feature-tag">📋 詳細レポート</span>
+      <span class="feature-tag">🏪 フランチャイズ対応</span>
+    </div>
+    <a href="https://hideo-t.github.io/negaibi/" class="service-btn">詳しく見る</a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 特定商取引法に基づく表記 -->
+<div class="info-section" id="tokushoho">
+  <div class="info-title">📋 特定商取引法に基づく表記</div>
+  <table class="info-table">
+    <tr><th>販売事業者</th><td>願い灯（運営：高橋秀夫）</td></tr>
+    <tr><th>代表者</th><td>高橋 秀夫</td></tr>
+    <tr><th>所在地</th><td>〒969-0305 福島県白河市大信 田園町府1-109</td></tr>
+    <tr><th>連絡先</th><td>メールにてお問い合わせください<br>※お問い合わせ後、速やかに対応いたします</td></tr>
+    <tr><th>販売価格</th><td>各サービスページに記載の価格（税込）<br>ベロメーター プレミアム：¥300（税込・買い切り）</td></tr>
+    <tr><th>支払方法</th><td>クレジットカード、Apple Pay、Google Pay、PayPay<br>（Stripe決済を利用）</td></tr>
+    <tr><th>支払時期</th><td>購入時に即時決済</td></tr>
+    <tr><th>商品引渡し時期</th><td>決済完了後、即時にサービスをご利用いただけます</td></tr>
+    <tr><th>返品・キャンセル</th><td>デジタルコンテンツの性質上、購入後の返品・キャンセルは原則としてお受けしておりません。<br>ただし、サービスに不具合がある場合は対応いたします。</td></tr>
+    <tr><th>動作環境</th><td>マイク付きスマートフォンまたはPC<br>対応ブラウザ：Chrome, Safari, Edge（最新版）</td></tr>
+  </table>
+</div>
+
+<footer>
+  <p>© 2025 願い灯 / NEGAIBI — Presented by 世界王</p>
+  <p style="margin-top:8px"><a href="#tokushoho">特定商取引法に基づく表記</a></p>
+</footer>
+
+</body>
+</html>
