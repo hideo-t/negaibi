@@ -108,6 +108,11 @@ footer a:hover{text-decoration:underline}
 /* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s,transform 0.8s}
 .reveal.visible{opacity:1;transform:translateY(0)}
+/* Fallback: if JS doesn't fire, show everything after 2s */
+@media(prefers-reduced-motion:no-preference){
+  .reveal{animation:revealFallback 0s 2s forwards}
+}
+@keyframes revealFallback{to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
@@ -137,13 +142,13 @@ footer a:hover{text-decoration:underline}
 <!-- APPS -->
 <section class="section" id="apps">
   <div class="section-label">Services</div>
-  <div class="section-title reveal">サービス一覧</div>
-  <div class="section-desc reveal">願い灯が提供するAIエンターテイメント。</div>
+  <div class="section-title">サービス一覧</div>
+  <div class="section-desc">願い灯が提供するAIエンターテイメント。</div>
 
   <div class="app-grid">
 
     <!-- ペットAI（準備中） -->
-    <div class="app-card reveal" style="opacity:0.5;cursor:default">
+    <div class="app-card" style="opacity:0.5;cursor:default">
       <div class="app-icon">🐾</div>
       <div class="app-body">
         <div class="app-name">
@@ -163,7 +168,7 @@ footer a:hover{text-decoration:underline}
     </div>
 
     <!-- ベロメーター -->
-    <a href="https://hideo-t.github.io/berometer/" class="app-card reveal">
+    <a href="https://hideo-t.github.io/berometer/" class="app-card">
       <div class="app-icon">🍺</div>
       <div class="app-body">
         <div class="app-name">
@@ -186,7 +191,7 @@ footer a:hover{text-decoration:underline}
     </a>
 
     <!-- 今宵の酒運 -->
-    <a href="https://hideo-t.github.io/sakeun/" class="app-card reveal">
+    <a href="https://hideo-t.github.io/sakeun/" class="app-card">
       <div class="app-icon">🏺</div>
       <div class="app-body">
         <div class="app-name">
@@ -208,7 +213,7 @@ footer a:hover{text-decoration:underline}
     </a>
 
     <!-- COMING SOON -->
-    <div class="app-card reveal" style="opacity:0.5;cursor:default">
+    <div class="app-card" style="opacity:0.5;cursor:default">
       <div class="app-icon">🔮</div>
       <div class="app-body">
         <div class="app-name" style="color:var(--grey)">次のサービス…</div>
@@ -223,7 +228,7 @@ footer a:hover{text-decoration:underline}
 <!-- BRAND STORY -->
 <section class="story">
   <div class="section" style="padding-top:60px;padding-bottom:60px">
-    <div class="story-content reveal">
+    <div class="story-content">
       <div style="font-size:32px;margin-bottom:16px">🕯</div>
       <div class="story-text">
         テクノロジーは、もっと<em>楽しく</em>ていい。<br>
@@ -238,11 +243,11 @@ footer a:hover{text-decoration:underline}
 
 <!-- PRICING -->
 <section class="section" id="pricing">
-  <div class="section-label reveal">Pricing</div>
-  <div class="section-title reveal">料金一覧</div>
-  <div class="section-desc reveal">すべて税込価格です。追加料金はありません。</div>
+  <div class="section-label">Pricing</div>
+  <div class="section-title">料金一覧</div>
+  <div class="section-desc">すべて税込価格です。追加料金はありません。</div>
 
-  <table class="price-table reveal">
+  <table class="price-table">
     <tr>
       <th>サービス名</th>
       <th>内容</th>
@@ -270,7 +275,7 @@ footer a:hover{text-decoration:underline}
     </tr>
   </table>
 
-  <div style="margin-top:20px;font-size:13px;color:var(--grey);line-height:1.8" class="reveal">
+  <div style="margin-top:20px;font-size:13px;color:var(--grey);line-height:1.8"">
     ※ 有料サービスの決済はStripeを利用しています。<br>
     ※ 対応決済手段：クレジットカード / Apple Pay / Google Pay / PayPay
   </div>
@@ -279,16 +284,16 @@ footer a:hover{text-decoration:underline}
 <!-- TOKUSHOHO -->
 <section class="legal" id="tokushoho">
   <div class="section">
-    <div class="section-label reveal">Legal</div>
-    <div class="section-title reveal">特定商取引法に基づく表記</div>
+    <div class="section-label">Legal</div>
+    <div class="section-title">特定商取引法に基づく表記</div>
     <div style="height:24px"></div>
 
-    <table class="legal-table reveal">
+    <table class="legal-table">
       <tr><th>販売事業者</th><td>願い灯</td></tr>
       <tr><th>事業形態</th><td>個人事業</td></tr>
       <tr><th>運営責任者</th><td>高橋 秀夫</td></tr>
       <tr><th>所在地</th><td>福島県白河市五郎窪38-1<br><small>※ 請求があった場合に遅滞なく開示いたします</small></td></tr>
-      <tr><th>連絡先</th><td>メール：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="adccc9c0c4c3eddac6c7dd83c3c8d9">[email&#160;protected]</a><br>※ お問い合わせはメールにて承ります</td></tr>
+      <tr><th>連絡先</th><td>メール：admin&#64;wkjp.net<br><small>※ お問い合わせはメールにて承ります</small></td></tr>
       <tr><th>電話番号</th><td>070-8311-1747<br>※ 請求があった場合に遅滞なく開示いたします</td></tr>
       <tr><th>事業内容</th><td>AI技術を活用したデジタルコンテンツの企画・開発・提供</td></tr>
       <tr><th>販売価格</th><td>
@@ -311,6 +316,21 @@ footer a:hover{text-decoration:underline}
   <p>© 2025 願い灯 / NEGAIBI — All rights reserved.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Scroll reveal
-const obs=new IntersectionObserver((entries
+<script>
+// Scroll reveal - immediately show elements in viewport, animate the rest
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
+  });
+},{threshold:0.1});
+revealEls.forEach(el => {
+  const rect = el.getBoundingClientRect();
+  if(rect.top < window.innerHeight){el.classList.add('visible')}
+  else{obs.observe(el)}
+});
+// Fallback: show all after 3s
+setTimeout(()=>{revealEls.forEach(el=>el.classList.add('visible'))},3000);
+</script>
+</body>
+</html>
