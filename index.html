@@ -142,8 +142,8 @@ footer a:hover{text-decoration:underline}
 
   <div class="app-grid">
 
-    <!-- ペットAI -->
-    <a href="https://hideo-t.github.io/negaibi/pet/" class="app-card reveal">
+    <!-- ペットAI（準備中） -->
+    <div class="app-card reveal" style="opacity:0.5;cursor:default">
       <div class="app-icon">🐾</div>
       <div class="app-body">
         <div class="app-name">
@@ -158,10 +158,9 @@ footer a:hover{text-decoration:underline}
           <span class="app-tag">🐕 犬・猫対応</span>
           <span class="app-tag">💌 メッセージ生成</span>
         </div>
-        <div class="app-price">¥500 <small>（税込）</small></div>
+        <div class="app-price" style="color:var(--grey)">準備中</div>
       </div>
-      <div class="app-arrow">→</div>
-    </a>
+    </div>
 
     <!-- ベロメーター -->
     <a href="https://hideo-t.github.io/berometer/" class="app-card reveal">
@@ -187,7 +186,7 @@ footer a:hover{text-decoration:underline}
     </a>
 
     <!-- 今宵の酒運 -->
-    <a href="https://hideo-t.github.io/negaibi/sakeun_v2.html" class="app-card reveal">
+    <a href="https://hideo-t.github.io/sakeun/" class="app-card reveal">
       <div class="app-icon">🏺</div>
       <div class="app-body">
         <div class="app-name">
@@ -250,14 +249,9 @@ footer a:hover{text-decoration:underline}
       <th>料金</th>
     </tr>
     <tr>
-      <td>🐾 うちの子からのメッセージ Standard</td>
+      <td>🐾 うちの子からのメッセージ</td>
       <td>ペットAI性格診断＋メッセージ</td>
-      <td>¥500</td>
-    </tr>
-    <tr>
-      <td>🐾 うちの子からのメッセージ Premium</td>
-      <td>詳細診断＋プレミアムコンテンツ</td>
-      <td>¥1,200</td>
+      <td style="color:var(--grey)">準備中</td>
     </tr>
     <tr>
       <td>🍺 ベロメーター（基本）</td>
@@ -294,12 +288,11 @@ footer a:hover{text-decoration:underline}
       <tr><th>事業形態</th><td>個人事業</td></tr>
       <tr><th>運営責任者</th><td>高橋 秀夫</td></tr>
       <tr><th>所在地</th><td>福島県白河市五郎窪38-1<br><small>※ 請求があった場合に遅滞なく開示いたします</small></td></tr>
-      <tr><th>連絡先</th><td>メール：admin@wkjp.net<br>※ お問い合わせはメールにて承ります</td></tr>
+      <tr><th>連絡先</th><td>メール：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="adccc9c0c4c3eddac6c7dd83c3c8d9">[email&#160;protected]</a><br>※ お問い合わせはメールにて承ります</td></tr>
       <tr><th>電話番号</th><td>070-8311-1747<br>※ 請求があった場合に遅滞なく開示いたします</td></tr>
       <tr><th>事業内容</th><td>AI技術を活用したデジタルコンテンツの企画・開発・提供</td></tr>
       <tr><th>販売価格</th><td>
-        うちの子からのメッセージ Standard：500円（税込）<br>
-        うちの子からのメッセージ Premium：1,200円（税込）<br>
+        うちの子からのメッセージ：準備中<br>
         ベロメーター プレミアム：300円（税込・買い切り）<br>
         ※ 各サービスページにも記載
       </td></tr>
@@ -318,12 +311,6 @@ footer a:hover{text-decoration:underline}
   <p>© 2025 願い灯 / NEGAIBI — All rights reserved.</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Scroll reveal
-const obs=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
-},{threshold:0.15});
-document.querySelectorAll('.reveal').forEach(el=>{obs.observe(el)});
-</script>
-</body>
-</html>
+const obs=new IntersectionObserver((entries
